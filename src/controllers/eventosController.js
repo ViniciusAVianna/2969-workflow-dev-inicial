@@ -1,7 +1,8 @@
 import Evento from '../models/evento.js';
+import unsleash from '../services/unleash.js';
 
 class EventosController {
-  static liberaAcessoEventos = () => process.env.EVENTO_FLAG === 'true';
+  static liberaAcessoEventos = () => unsleash.isEnabled('eventos');
 
   static listarEventos = async (req, res) => {
     if (this.liberaAcessoEventos()) {
